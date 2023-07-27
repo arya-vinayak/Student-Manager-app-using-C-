@@ -19,6 +19,15 @@ bool admin_funcs::login(string username, string password)
         getline(ss, pass, ',');
         if (user == username && pass == password)
         {
+            cout << R"(
+                 ▄     ▄ ▄▄▄▄▄▄▄ ▄▄▄     ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄▄ 
+                █ █ ▄ █ █       █   █   █       █       █  █▄█  █       █
+                █ ██ ██ █    ▄▄▄█   █   █       █   ▄   █       █    ▄▄▄█
+                █       █   █▄▄▄█   █   █     ▄▄█  █ █  █       █   █▄▄▄ 
+                █       █    ▄▄▄█   █▄▄▄█    █  █  █▄█  █       █    ▄▄▄█
+                █   ▄   █   █▄▄▄█       █    █▄▄█       █ ██▄██ █   █▄▄▄ 
+                █▄▄█ █▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█
+            )" << endl;
             return true;
         }
         cout << "\t\t\t Welcome " << username << "!" << endl;
@@ -124,30 +133,34 @@ void Admin::add_student()
 {
     cout << "\t\t\t Enter Username: ";
     string username;
+    cin.clear();
+    cin.ignore(10000, '\n');
     getline(cin, username);
-    cin.ignore(); // Add this to clear the newline character from the buffer
 
+    // cin.ignore(); // Add this to clear the newline character from the buffer
+    // cin.ignore(10000, '\n');
     cout << "\t\t\t Enter Password: ";
     string password;
     getline(cin, password);
-    cin.ignore(); // Add this to clear the newline character from the buffer
+    // cin.ignore(); // Add this to clear the newline character from the buffer
 
     cout << "\t\t\t Enter Name: ";
     string name;
     getline(cin, name);
-    cin.ignore(); // Add this to clear the newline character from the buffer
+    // cin.ignore(); // Add this to clear the newline character from the buffer
 
     cout << "\t\t\t Enter Phone: ";
     string phone;
     getline(cin, phone);
-    cin.ignore(); // Add this to clear the newline character from the buffer
+    // cin.ignore(); // Add this to clear the newline character from the buffer
 
     cout << "\t\t\t Enter Email: ";
     string email;
     getline(cin, email);
-    cin.ignore(); // Add this to clear the newline character from the buffer
+    // cin.ignore(); // Add this to clear the newline character from the buffer
 
     ofstream file(databases::student_db, ios::app);
+    cout << "\t\t\t" << username << "," << password << "," << name << "," << phone << "," << email << endl;
     file << username << "," << password << "," << name << "," << phone << "," << email << endl;
     file.close();
 

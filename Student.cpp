@@ -131,7 +131,7 @@ void user_funcs::register_user()
     output.close();
     cout << "\t\t\t User Registered Successfully!" << endl;
     cout << "\t\t\t Please login to continue!" << endl;
-    system("clear");
+    // system("clear");
 }
 
 
