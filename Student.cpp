@@ -113,7 +113,7 @@ void user_funcs::register_user()
     global_funcs::get_input(username);
     cout << "\t\t\t Enter password: ";
     global_funcs::get_input(password);
-    cout << "\t\t\t Enter address: ";
+    cout << "\t\t\t Enter Name: ";
     global_funcs::get_input(name);
     cout << "\t\t\t Enter your email: ";
     global_funcs::input_flush();
