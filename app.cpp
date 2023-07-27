@@ -1,29 +1,17 @@
 #include<iostream>
 #include "Admin.h"
+#include "Student.h"
 
 using namespace std;
 
 void displayMainMenu()
 {
-    cout << R"(
-
-        ██████╗ ███████╗███████╗██╗   ██╗
-        ██╔══██╗██╔════╝██╔════╝██║   ██║
-        ██████╔╝█████╗  ███████╗██║   ██║
-        ██╔═══╝ ██╔══╝  ╚════██║██║   ██║
-        ██║     ███████╗███████║╚██████╔╝
-        ╚═╝     ╚══════╝╚══════╝ ╚═════╝ 
-                                 
-
-                                                                    
-                                                                    
-
-        [1] Teacher Login
-        [2] User Login
-        [3] Exit
-
-        Enter your choice: )";
+    cout << "\t\t\t Welcome to School Management System" << endl;
+    cout << "\t\t\t 1. Admin" << endl;
+    cout << "\t\t\t 2. User" << endl;
+    cout << "\t\t\t 3. Exit" << endl;
 }
+
 
 
 namespace main_funcs
@@ -31,6 +19,7 @@ namespace main_funcs
     // Function to execute option 1
     void Admin_func()
     {
+        string name,name1;
         // cout << "Executing Option 1..." << endl;
         cout << "\t\t\t Welcome to Admin Login" << endl;
         cout << "\t\t\t Enter Username: ";
@@ -111,11 +100,35 @@ namespace main_funcs
                     break;
                 case 11:
                     cout << "Search Student Functionality..." << endl;
-                    admin.search_student();
+                    cout << "Enter the name of the student: ";
+                    //string name = "";
+                    global_funcs::input_flush();
+                    getline(cin, name);
+                    if(admin.search_student(name))
+                    {
+                        cout<<"\t\t\t student is present details are:"<<endl;
+
+                    }
+                    else
+                    {
+                        cout<<"\t\t\t student is not present"<<endl;
+                    }
                     break;
                 case 12:
                     cout << "Search Teacher Functionality..." << endl;
-                    admin.search_teacher();
+                    cout << "Enter the name of the teacher: ";
+                    //string name1 = "";
+                    global_funcs::input_flush();
+                    getline(cin, name1);
+                    if(admin.search_teacher(name1))
+                    {
+                        cout<<"\t\t\t teacher is present details are:"<<endl;
+
+                    }
+                    else
+                    {
+                        cout<<"\t\t\t teacher is not present"<<endl;
+                    }
                     break;    
                 case 13:
                     cout << "Exiting Admin Panel..." << endl;
@@ -131,7 +144,39 @@ namespace main_funcs
         }
         // cout << "Option 1 executed!" << endl << endl;
     }
+
+    void User()
+    {
+        cout << "\t\t\t Welcome to User Login" << endl;
+        cout << "\t\t\t 1. Login" << endl;
+        cout << "\t\t\t 2. Register" << endl;
+        cout << "\t\t\t 3. Exit" << endl;
+        cout << "\t\t\t Enter your choice: ";
+        int choice;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            user_funcs::login();
+            break;
+        case 2:
+            user_funcs::register_user();
+            break;
+
+        case 3:
+            cout << "Exiting..." << endl;
+            cout << "BYE"
+                 << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl
+                 << endl;
+            break;
+        }
+    }
 }
+
+
 
 
 
@@ -158,15 +203,8 @@ int main()
             break;
         case 3:
             exit = true;
-            // cout << "Exiting..." << endl;
-            cout << R"(
-                      ██████╗ ██╗   ██╗███████╗
-                      ██╔══██╗╚██╗ ██╔╝██╔════╝
-                      ██████╔╝ ╚████╔╝ █████╗  
-                      ██╔══██╗  ╚██╔╝  ██╔══╝  
-                      ██████╔╝   ██║   ███████╗
-                      ╚═════╝    ╚═╝   ╚══════╝
-                )"
+            cout << "Exiting..." << endl;
+            cout << "BYE"
                  << endl;
             break;
         default:
