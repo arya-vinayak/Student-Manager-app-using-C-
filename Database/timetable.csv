@@ -1,6 +1,6 @@
 Day,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6
 Monday,Maths,Science,English,Maths,Computer Science,Science
 Tuesday,Science,English,Science,Maths,Computer Science,Maths
-Wednesday,English,Science,Maths,Science,Computer Science,English
-Thursday,Science,Maths,English,Maths,Computer Science,Science
-Friday,Computer Science,Maths,Science,English,Science,Maths
+Wednesday,Math,Social,Science,Computer Science,English,Math
+Thursday,social,math,english,cpp,art,art
+Friday,Math,english,art,hindi,hindi,science

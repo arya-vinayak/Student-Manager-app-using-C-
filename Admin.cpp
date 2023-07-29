@@ -19,18 +19,10 @@ bool admin_funcs::login(string username, string password)
         getline(ss, pass, ',');
         if (user == username && pass == password)
         {
-            cout << R"(
-                 ▄     ▄ ▄▄▄▄▄▄▄ ▄▄▄     ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄▄ 
-                █ █ ▄ █ █       █   █   █       █       █  █▄█  █       █
-                █ ██ ██ █    ▄▄▄█   █   █       █   ▄   █       █    ▄▄▄█
-                █       █   █▄▄▄█   █   █     ▄▄█  █ █  █       █   █▄▄▄ 
-                █       █    ▄▄▄█   █▄▄▄█    █  █  █▄█  █       █    ▄▄▄█
-                █   ▄   █   █▄▄▄█       █    █▄▄█       █ ██▄██ █   █▄▄▄ 
-                █▄▄█ █▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█
-            )" << endl;
+            cout <<"Welcome!" << endl;
             return true;
         }
-        cout << "\t\t\t Welcome " << username << "!" << endl;
+        // cout << "\t\t\t Welcome " << username << "!" << endl;
     }
     return false;
 }
@@ -116,38 +108,30 @@ bool Admin::search_student(const std::string& name1)
         ss.clear();
 
         // Check if the extracted student name matches the name we are searching for
-        if (name == name1) {
+        if (username == name1) {
             // If a match is found, return true to indicate that the hotel exists in the file
             return true;
         }
     }
 
     // If the loop finishes without finding a match, the student does not exist in the file
-;
     return false;
 
 
 }
 //student database contains username, password, name, phone, email
-void Admin::add_student()
+void Admin::add_teacher()
 {
-    cout << "\t\t\t Enter Username: ";
+    cout << "\t\t\t Enter teacher name: ";
     string username;
     cin.clear();
     cin.ignore(10000, '\n');
     getline(cin, username);
 
-    // cin.ignore(); // Add this to clear the newline character from the buffer
-    // cin.ignore(10000, '\n');
-    cout << "\t\t\t Enter Password: ";
-    string password;
-    getline(cin, password);
-    // cin.ignore(); // Add this to clear the newline character from the buffer
+    cout << "\t\t\t Enter the teacher's address: ";
+    string address;
+    getline(cin, address);
 
-    cout << "\t\t\t Enter Name: ";
-    string name;
-    getline(cin, name);
-    // cin.ignore(); // Add this to clear the newline character from the buffer
 
     cout << "\t\t\t Enter Phone: ";
     string phone;
@@ -159,19 +143,18 @@ void Admin::add_student()
     getline(cin, email);
     // cin.ignore(); // Add this to clear the newline character from the buffer
 
-    ofstream file(databases::student_db, ios::app);
-    cout << "\t\t\t" << username << "," << password << "," << name << "," << phone << "," << email << endl;
-    file << username << "," << password << "," << name << "," << phone << "," << email << endl;
+    ofstream file(databases::teacher_db, ios::app);
+    file << username << "," << address << "," << email << "," << phone << endl;
     file.close();
 
-    cout << "\t\t\t Student added successfully!" << endl;
+    cout << "\t\t\t Teacher added successfully!" << endl;
 }
 
 
 
 void Admin::remove_student()
 {
-    cout << "\t\t\t Enter Student Name: ";
+    cout << "\t\t\t Enter Student SRN: ";
     string name;
     global_funcs::input_flush();
     getline(cin, name);
@@ -192,7 +175,7 @@ void Admin::remove_student()
         getline(ss, n, ',');
         getline(ss, phone, ',');
         getline(ss, email, ',');
-        if (n != name)
+        if (username != name)
         {
             temp << line << endl;
         }
@@ -209,6 +192,7 @@ void Admin::view_all_students()
 {
     ifstream file(databases::student_db);
     string line;
+    getline(file, line);//skip the header line
     while (getline(file, line))
     {
         stringstream ss(line);
@@ -234,6 +218,7 @@ void Admin::view_student_attendance()
    //viewing attendance of all students
     ifstream file(databases::student_attendance_db);
     string line;
+    getline(file, line);//skip the header line
     while (getline(file, line))
     {
         stringstream ss(line);
@@ -259,7 +244,7 @@ void Admin::view_student_attendance()
 //student_grades_db contains student name and corresponding grades in subjects stored in order maths, science, english, social studies, computer science
 void Admin::view_student_grades()
 {
-    cout << "\t\t\t Enter Student Name: ";
+    cout << "\t\t\t Enter Student SRN: ";
     string name;
     global_funcs::input_flush();
     getline(cin, name);
@@ -326,6 +311,7 @@ void Admin::view_all_teachers()
 {
     ifstream file(databases::teacher_db);
     string line;
+    getline(file, line);//skip the header line
     while (getline(file, line))
     {
         stringstream ss(line);
@@ -346,6 +332,7 @@ void Admin::view_all_teachers()
 
 void Admin::edit_timetable()
 {
+    global_funcs::input_flush();
     cout << "\t\t\t Enter Day: ";
     string day;
     getline(cin, day);
@@ -404,31 +391,33 @@ void Admin::edit_timetable()
     cout << "\t\t\t Timetable edited successfully!" << endl;
 }
 
-//adding the teacher involves addinf the teacher name, address, phone and email
-void Admin::add_teacher()
+void Admin::add_student()
 {
+     string username, password,name, email, phone;
+    cout << "\t\t\t Enter username: ";
+    global_funcs::get_input(username);
+    cout << "\t\t\t Enter password: ";
+    global_funcs::get_input(password);
     cout << "\t\t\t Enter Name: ";
-    string name;
-    getline(cin, name);
-
-    cout << "\t\t\t Enter Address: ";
-    string address;
-    getline(cin, address);
-
-    cout << "\t\t\t Enter Phone: ";
-    string phone;
-    getline(cin, phone);
-
-    cout << "\t\t\t Enter Email: ";
-    string email;
+    global_funcs::get_input(name);
+    cout << "\t\t\t Enter your email: ";
+    global_funcs::input_flush();
     getline(cin, email);
+    cout << "\t\t\t Enter phone: ";
+    // cin.clear();
+    // cin.ignore(1000,'\n');
+    global_funcs::get_input(phone);
+    ofstream output(databases::student_db, ios::app);
+    if(!output.is_open()){
+        cout << "File not found!" << endl;
+        return;
+    }
+    output << username << "," << password << ","<< name << "," << email << "," << phone <<'\n';
+    output.close();
+    cout << "\t\t\t User Registered Successfully!" << endl;
 
-    ofstream file(databases::teacher_db, ios::app);
-    file << name << "," << address << "," << phone << "," << email << endl;
-    file.close();
-    cout << "\t\t\t Teacher added successfully!" << endl;
+    cout << "\t\t\t Student added successfully!" << endl;
 }
-
 
 
 void Admin::remove_teacher()

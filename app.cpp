@@ -100,13 +100,13 @@ namespace main_funcs
                     break;
                 case 11:
                     cout << "Search Student Functionality..." << endl;
-                    cout << "Enter the name of the student: ";
+                    cout << "Enter the SRN of the student: ";
                     //string name = "";
                     global_funcs::input_flush();
                     getline(cin, name);
                     if(admin.search_student(name))
                     {
-                        cout<<"\t\t\t student is present details are:"<<endl;
+                        cout<<"\t\t\t student is present "<<endl;
 
                     }
                     else
@@ -132,11 +132,12 @@ namespace main_funcs
                     break;    
                 case 13:
                     cout << "Exiting Admin Panel..." << endl;
+                    return;
                     break;    
                 default:
                     cout << "Invalid choice!" << endl;
                 }
-            } while (choice >= 13);
+            } while (choice != 13);
         }
         else
         {

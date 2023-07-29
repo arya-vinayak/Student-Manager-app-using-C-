@@ -1,4 +1,3 @@
-#include <vector>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -45,7 +44,6 @@ class Admin
 
 namespace admin_funcs {
     bool login(string, string);
-    const string teacher_db = "./Database/teachers.csv";
 }
 
 
